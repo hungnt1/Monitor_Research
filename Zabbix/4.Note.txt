@@ -1,0 +1,37 @@
+
+
+1. Keystone POST 
+
+
+- URL : http://192.168.100.32:5000/v3/auth/tokens
+
+- Body : 
+```
+{ "auth": {
+    "identity": {
+      "methods": ["password"],
+      "password": {
+        "user": {
+          "name": "monitor",
+          "domain": { "id": "default" },
+          "password": "monitor123"
+        }
+      }
+    },
+    "scope": {
+      "project": {
+        "name": "monitor",
+        "domain": { "id": "default" }
+      }
+    }
+  }
+}
+```
+
+- Header 
+```
+Content-Type: application/json
+
+```
+
+- Status required : 201
