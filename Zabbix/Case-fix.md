@@ -11,4 +11,7 @@ vi /etc/zabbix/zabbix_agentd.conf
 
 Server=192.168.30.194,192.168.100.33
 
+server=zabbixserverIP,LasthopIP
+ServerActive=zabbixserverIP,LasthopIP
+
 ```
