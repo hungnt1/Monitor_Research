@@ -2,7 +2,7 @@
 ## Hanoi, 30/10/2019
 
 
-##  Chiêm nghiệm cá nhân : Sách nào cũng không bằng docs ở trang chủ, thế nên cứ theo flow của nó.
+##   Sách nào cũng không bằng docs ở trang chủ, thế nên cứ theo flow của nó.
 
 
 ## Phiên bản tìm hiểu : CheckMK 1.6
