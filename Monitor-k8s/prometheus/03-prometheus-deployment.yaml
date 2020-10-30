@@ -57,7 +57,7 @@ spec:
     app: prometheus
     component: server
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: prometheus
@@ -138,7 +138,7 @@ spec:
   type: NodePort
   ports:
     - port: 9090
-      nodePort: 30090
+      nodePort: 30099
   selector:
     app: prometheus
     component: server

@@ -26,7 +26,7 @@ spec:
     component: alertmanager
   type: ClusterIP
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
@@ -35,6 +35,10 @@ metadata:
   name: prometheus-alertmanager
   namespace: edge-monitoring
 spec:
+  selector:
+    matchLabels:
+      app: prometheus
+      component: alertmanager
   replicas: 1
   template:
     metadata:
@@ -50,7 +54,7 @@ spec:
           args:
             - --config.file=/etc/config/alertmanager.yml
             - --storage.path=/data
-            - --web.external-url=/
+            # - --web.external-url=http://example.com:9093
           ports:
             - containerPort: 9093
           readinessProbe:
