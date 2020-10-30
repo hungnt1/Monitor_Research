@@ -1,0 +1,33 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: grafana
+  name: grafana
+  namespace: edge-monitoring
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 3000  
+  selector:
+    app: grafana
+  type: "ClusterIP"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: edge-monitoring
+  name: grafana-service-nodeport
+  labels:
+    app: grafana
+spec:
+  type: NodePort
+  ports:
+    - port: 3000
+      nodePort: 30300
+  selector:
+    app: grafana
+

@@ -1,0 +1,72 @@
+## 1. Install
+
+git clone https://github.com/prometheus-operator/kube-prometheus
+cd kube-prometheus/ 
+kubectl create -f manifests/setup
+until kubectl get servicemonitors --all-namespaces ; do date; sleep 1; echo ""; done
+kubectl create -f manifests/
+
+
+kubectl get svc -n monitoring
+
+
+Access to svc: nodeport:30921 - admin:admin
+
+## 2. Expose service to nodeport
+```
+cat prom-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: prom-service
+  labels:
+    app: prometheus
+spec:
+  type: NodePort
+  ports:
+    - port: 9090
+      nodePort: 30090
+  selector:
+    app: rometheus
+    prometheus: k8s
+
+```
+```
+kubectl create -f prom-service.yaml -n monitoring
+kubectl describe svc prom-service -n monitoring
+```
+
+- Access to Prom
+```
+nodeport:30090
+```
+
+
+- Expose alertmanager
+```
+cat alert-prom-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: alert-prom-service
+  labels:
+    app: alertprometheus
+spec:
+  type: NodePort
+  ports:
+    - port: 9093
+      nodePort: 30093
+  selector:
+    app: alertmanager
+
+
+```
+- Create svc
+```
+ kubectl create -f alert-prom-service.yaml -n monitoring
+```
+
+- Access svc
+```
+nodeport:30093
+```
